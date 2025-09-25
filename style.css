@@ -1,0 +1,360 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background-color: #842525; /* Light red */
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.header-logo {
+    height: 50px; 
+    width: auto; 
+    vertical-align: middle;
+    
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+  text-align: left;
+}
+
+.nav-links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  flex: 1;
+  text-align: right;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  color: #333;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Sidebar open state */
+.sidebar.open {
+  right: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  background-color: #242020; /* Light red */
+  color: white;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  text-align: center;            
+  margin: 0 auto;                
+  display: block;
+}
+
+.close-btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Sidebar content */
+.sidebar-content {
+  padding: 1.5rem;
+}
+
+.sidebar-content h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #d62020; 
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sidebar-content p {
+  margin-bottom: 13rem;
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-links li {
+  margin-bottom: 1rem;
+}
+
+.sidebar-links a {
+  color: #d62020;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar-links a:hover {
+  text-decoration: underline;
+}
+
+ 
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Main */
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: left;
+  gap: 1rem;
+}
+
+.footer-info div {
+  flex: 1;
+  min-width: 150px;
+}
+
+.footer-info h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.footer-bottom {
+  text-align: left;
+  font-size: 0.9rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+}
+
+/* Help icon style */
+.help-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* Theme toggle container */
+.theme-toggle-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Toggle switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #333;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.toggle-label {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Dark Mode Classes */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+header.dark-mode {
+  background-color: #2c2c2c;
+}
+
+footer.dark-mode {
+  background-color: #1e1e1e;
+  color: #ccc;
+}
+
+.sidebar.dark-mode {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+.sidebar-header.dark-mode {
+  background-color: #444;
+}
+
+.sidebar-links a {
+  color: #ff4d4d;
+}
+
+.sidebar.dark-mode .sidebar-links a {
+  color: #ffa5a5;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  background: #f8f8f8;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scrollLeft 115s linear infinite;
+  align-items: center;
+  gap: 40px; /* Space between posters */
+  padding: 0 2rem;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-track img {
+  width: calc((100vw - 160px) / 3); /* 🖥️ 3 posters per view */
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  flex-shrink: 0;
+}
+
+/* 🔍 Hover Zoom */
+.carousel-track img:hover {
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+/* ✨ Scroll Animation */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Buttons hidden in CSS-only carousel */
+.carousel-btn {
+  display: none;
+}
+
+/* 📱 Mobile View: Show 1 poster */
+@media (max-width: 768px) {
+  .carousel-track {
+    gap: 20px;
+  }
+
+  .carousel-track img {
+    width: calc(100vw - 40px); /* Full width minus small padding */
+  }
+}
