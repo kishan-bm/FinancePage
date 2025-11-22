@@ -113,4 +113,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Start
   startAutoScroll();
+
+  
 });
+
+// ---- Load WordPress Blog → About section ----
+
+async function loadAboutFromWP() {
+  try {
+    const res = await fetch("https://kishan259.wordpress.com/wp-json/wp/v2/posts?slug=about&_embed");
+    const posts = await res.json();
+    if (!posts.length) return;
+
+    const post = posts[0];
+    const aboutEl = document.querySelector("#about");
+
+    aboutEl.innerHTML = `
+      <h2>${post.title.rendered}</h2>
+      <div>${post.content.rendered}</div>
+    `;
+  } catch (error) {
+    console.error("Error loading WP About:", error);
+  }
+}
+
+loadAboutFromWP();
