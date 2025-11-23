@@ -121,8 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadAboutFromWP() {
   try {
-    const res = await fetch("https://kishan259.wordpress.com/wp-json/wp/v2/posts?slug=about&_embe");
+    const url = "https://public-api.wordpress.com/wp/v2/sites/kishan259.wordpress.com/posts?slug=graph";
+    const res = await fetch(url);
     const posts = await res.json();
+
+    console.log(posts); // <--- check response
+
     if (!posts.length) return;
 
     const post = posts[0];
@@ -133,7 +137,7 @@ async function loadAboutFromWP() {
       <div>${post.content.rendered}</div>
     `;
   } catch (error) {
-    console.error("Error loading WP About:", error);
+    console.error("WP Fetch Error:", error);
   }
 }
 
