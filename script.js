@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadAboutFromWP() {
   try {
-    const res = await fetch("https://kishan259.wordpress.com/2025/11/22/graph/");
+    const res = await fetch("https://kishan259.wordpress.com/wp-json/wp/v2/posts?slug=about&_embe");
     const posts = await res.json();
     if (!posts.length) return;
 
