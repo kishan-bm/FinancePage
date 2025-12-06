@@ -117,28 +117,48 @@ document.addEventListener('DOMContentLoaded', () => {
   
 });
 
-// ---- Load WordPress Blog → About section ----
+// ---- Load WordPress Blog Posts → About section ----
 
 async function loadAboutFromWP() {
   try {
-    const url = "https://public-api.wordpress.com/wp/v2/sites/kishan259.wordpress.com/posts?slug=graph";
+    // Fetch from your actual WordPress site
+    const url = "https://klantroef.cloud/wp-json/wp/v2/posts?per_page=5&_embed";
     const res = await fetch(url);
     const posts = await res.json();
 
-    console.log(posts); // <--- check response
+    console.log(posts); // Check response in browser console
 
-    if (!posts.length) return;
+    if (!posts || posts.length === 0) {
+      console.log("No posts found");
+      return;
+    }
 
-    const post = posts[0];
     const aboutEl = document.querySelector("#about");
+    
+    // Display all posts
+    let postsHTML = '<h2>Latest Blog Posts</h2>';
+    
+    posts.forEach(post => {
+      postsHTML += `
+        <article class="blog-post">
+          <h3>${post.title.rendered}</h3>
+          <p class="post-date">${new Date(post.date).toLocaleDateString()}</p>
+          <div class="post-content">${post.excerpt.rendered}</div>
+          <a href="${post.link}" target="_blank" class="read-more">Read More →</a>
+        </article>
+      `;
+    });
+    
+    aboutEl.innerHTML = postsHTML;
 
-    aboutEl.innerHTML = `
-      <h2>${post.title.rendered}</h2>
-      <div>${post.content.rendered}</div>
-    `;
   } catch (error) {
     console.error("WP Fetch Error:", error);
+    document.querySelector("#about").innerHTML = `
+      <h2>Blog Posts</h2>
+      <p>Unable to load posts at this time.</p>
+    `;
   }
 }
 
+// Load posts when page loads
 loadAboutFromWP();
