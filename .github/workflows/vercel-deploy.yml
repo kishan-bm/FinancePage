@@ -1,47 +1,10 @@
-# name: Deploy to Vercel
-
-# on:
-#   push:
-#     branches: [ main ]
-#   repository_dispatch:
-#     types: [wp-publish]
-
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout repo
-#         uses: actions/checkout@v4
-
-#       - name: Use Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: '18'
-#           cache: 'npm'
-
-#       - name: Install dependencies
-#         run: npm ci
-
-#       - name: Build project
-#         run: npm run build
-
-#       - name: Install Vercel CLI
-#         run: npm install -g vercel
-
-#       - name: Deploy to Vercel
-#         env:
-#           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-#         run: vercel --prod --token $VERCEL_TOKEN --yes
-
-
 name: Deploy Static Site to Vercel
 
 on:
   push:
     branches: [ main ]
   repository_dispatch:
-    types: [wp-publish]
+    types: [wordpress_post_update]
 
 jobs:
   deploy:
@@ -58,4 +21,4 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          vercel --prod --token $VERCEL_TOKEN --yes
+          vercel --prod --token $VERCEL_TOKEN --yes --cwd .
